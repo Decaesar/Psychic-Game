@@ -1,0 +1,71 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <title> The Psychic Game </title>
+</head>
+
+<body>
+
+    <h><span>The Psychic Game !! </span></h>
+
+    <div id="game">
+            <p>Guess What I am thinking of </p>
+          </div>
+
+
+<script>
+
+// Define variables wins, losses and gussesLeft //
+
+var wins = 0;
+var losses = 0;
+var gussesLeft = 8;
+var letters = [ "a" , "b", "c","d","e","f"];
+
+// The app picks a letter randomly
+
+
+
+
+// the user has to guess which letter the computer choose
+
+document.onkeyup = function (event) {
+
+var userGuess = document.getElementById;
+
+var appGuess = letters[Math.floor(Math.random() * letters.length)];
+
+gussesLeft = gussesLeft - 1 ;
+
+if (userGuess === appGuess) {
+win++;
+} else if (userGuess > appGuess){
+losses ++;
+}
+
+
+
+var html =
+          "<p>wins: " + wins + "</p>" +
+          "<p>losses: " + losses + "</p>" +
+          "<p>GussesLeft: " + gussesLeft + "</p>" ;
+
+document.querySelector("#game").innerHTML = html;
+}
+
+// when the user wins, increase wins by 1 and start game over with page refresh
+
+
+// when the user losses, increase wins by 1 and start game over
+    
+    
+</script>
+    
+</body>
+
+</html>
