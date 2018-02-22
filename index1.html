@@ -16,10 +16,22 @@
     <h><span>The Psychic Game !! </span></h>
 
 
-    <div id="game">
-            <p>Guess What I am thinking of </p>
+    <div>
+            <h1>Guess What I am thinking of </h1>
+
           </div>
 
+    <div id = "game">
+
+        <p>wins: </p>
+
+        <p>losses: </p>
+
+        <p>GussesLeft: </p>
+
+        <p>Your Gusses So far : </p>
+
+    </div>
 
 
 <script>
@@ -30,68 +42,49 @@ var wins = 0;
 var losses = 0;
 var gussesLeft = 8;
 var letters = ["a" , "b", "c","d","e","f"];
-var gussess = [""];
+var gusses = [];
 
 // The app picks a letter randomly
-
-var html =
-          "<p>wins: " + wins + "</p>" +
-          "<p>losses: " + losses + "</p>" +
-          "<p>GussesLeft: " + gussesLeft + "</p>";
-
-    document.querySelector("#game").innerHTML = html;
 
 // the user has to guess which letter the computer choose
 
 document.onkeyup = function (event) {
 
-var userGuess = event.key;
+var userGuess = String.fromCharCode(event.which).toLowerCase();;
 console.log(userGuess);
-
-gussesLeft = gussesLeft - 1 ;
 
 var appGuess = letters[Math.floor(Math.random() * letters.length)];
 console.log(appGuess);
 
-
-
-console.log(gussesLeft);
-
+gusses.push(userGuess);
 
 if ("userGuess" === "appGuess") {
 
-document.querySelector("#wins").innerHTML = wins++;
+wins++;
+gussesLeft = 8;
+gusses.length = 0;
 console.log(wins);
 
-} else {
-
-    if (gussesLeft === 0) {
+} else if (gussesLeft === 0) {
         losses++;
+        gussesLeft = 8;
+        gusses.length = 0;
         console.log(losses);
 
-    }
+} else if (userGuess !== appGuess) {
+    gussesLeft = gussesLeft -1;
 }
 
+var html =
+          "<p>wins: " + wins + "</p>" +
+          "<p>losses: " + losses + "</p>" +
+          "<p>GussesLeft: " + gussesLeft + "</p>" +
+          "<p>Your Gusses So far: " + [gusses] + "</p>";
 
+    document.querySelector("#game").innerHTML = html;
 
-};
-
-
-
-
-
-
-
-
-
-
-
-
-
+}
     
-
-
-
 // when the user wins, increase wins by 1 and start game over with page refresh
 
 
